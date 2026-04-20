@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>2026年，普通人真的可以编程了——我亲测有效</title>
+<title>我不会写代码，但我在开发软件</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   
@@ -14,7 +14,6 @@
     color: #4a4a4a;
   }
   
-  /* 手机容器 */
   .phone-frame {
     max-width: 414px;
     margin: 0 auto;
@@ -24,7 +23,6 @@
     position: relative;
   }
   
-  /* 纸张纹理背景 */
   .phone-frame::before {
     content: '';
     position: absolute;
@@ -35,6 +33,24 @@
     background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
     pointer-events: none;
     z-index: 0;
+  }
+  
+  /* ===== 日记分隔线 ===== */
+  .diary-divider {
+    height: 8px;
+    background: linear-gradient(90deg, #d4c8b8 0%, #e8ddd0 50%, #d4c8b8 100%);
+    position: relative;
+  }
+  
+  .diary-divider::before {
+    content: '📖';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: #faf8f5;
+    padding: 0 15px;
+    font-size: 20px;
   }
   
   /* ===== 封面页 ===== */
@@ -365,13 +381,14 @@
 
 <div class="phone-frame">
 
+  <!-- ==================== 第一篇日记 ==================== -->
   <!-- ===== 第1屏：封面 ===== -->
   <div class="cover-page">
     <div class="corner-decoration top-left"></div>
     <div class="corner-decoration top-right"></div>
     <div class="cover-content">
       <div class="cover-date-tag">📅 2026.02 · 我的编程启蒙</div>
-    <div class="cover-emoji">💻</div>
+      <div class="cover-emoji">💻</div>
       <h1 class="cover-title">2026年<br>普通人真的可以编程了<br>——我亲测有效</h1>
       <p class="cover-subtitle">一天编程没学过，我做出了人生第一个工具</p>
       <div class="sticky-note">
@@ -535,6 +552,138 @@
       <span class="end-tag">#开发日记</span>
       <span class="end-tag">#从0到1</span>
       <span class="end-tag">#我不会写代码但我在开发软件</span>
+    </div>
+    <div class="corner-decoration bottom-left"></div>
+    <div class="corner-decoration bottom-right"></div>
+  </div>
+
+  <!-- ==================== 日记分隔线 ==================== -->
+  <div class="diary-divider"></div>
+
+  <!-- ==================== 第二篇日记 ==================== -->
+  <!-- ===== 第1屏：封面 ===== -->
+  <div class="cover-page">
+    <div class="corner-decoration top-left"></div>
+    <div class="corner-decoration top-right"></div>
+    <div class="cover-content">
+      <div class="cover-date-tag">📅 2026年4月20日 · Day 1 · 冰山日记</div>
+      <div class="cover-emoji">🚫</div>
+      <h1 class="cover-title">做软件第1天<br>我的链接就被微信封了</h1>
+      <p class="cover-subtitle">一个教育人的造软之路 · 真实记录每一次踩坑与成长</p>
+      <div class="sticky-note">
+        <span class="sticky-note-text">#开发日记 #踩坑记录 #微信链接被封</span>
+      </div>
+    </div>
+    <div class="corner-decoration bottom-left"></div>
+    <div class="corner-decoration bottom-right"></div>
+  </div>
+
+  <!-- ===== 第2屏：发生了什么 ===== -->
+  <div class="content-page">
+    <div class="corner-decoration top-left"></div>
+    <div class="corner-decoration top-right"></div>
+    <div class="page-number">— 1/3 —</div>
+    <div class="section-header">
+      <span class="section-icon">📍</span>
+      <h2 class="section-title">今天发生了什么</h2>
+    </div>
+    <div class="section-content">
+      <p>兴冲冲地把刚做好的「冰山日记」网页链接发进学员群——</p>
+      <p>结果……</p>
+      <div class="note-card highlight">
+        <div class="note-card-title">💥 意外状况</div>
+        <p>学员一点开，直接跳出来一个巨大的<strong style="color:#ff6b6b;">红色警告页面</strong>：</p>
+        <p style="margin-top:10px;font-size:15px;">「⚠️ 已停止访问该网页」</p>
+        <p style="margin-top:10px;">微信判定我的链接"存在安全风险"，所有人都看不了。</p>
+      </div>
+      <p>软件还没正式用上，第一关就被卡死了。😭</p>
+    </div>
+    <div class="hand-drawn-line"></div>
+    <div class="corner-decoration bottom-left"></div>
+    <div class="corner-decoration bottom-right"></div>
+  </div>
+
+  <!-- ===== 第3屏：解决过程 ===== -->
+  <div class="content-page">
+    <div class="corner-decoration top-left"></div>
+    <div class="corner-decoration top-right"></div>
+    <div class="page-number">— 2/3 —</div>
+    <div class="section-header">
+      <span class="section-icon">🔍</span>
+      <h2 class="section-title">我是怎么处理的</h2>
+    </div>
+    <div class="section-content">
+      <ul style="list-style:none;padding:0;">
+        <li style="padding:12px 0;padding-left:36px;position:relative;border-bottom:1px dashed #e0d8cc;">
+          <span style="position:absolute;left:0;top:12px;width:24px;height:24px;background:linear-gradient(135deg,#ff9aa2 0%,#ffb6c1 100%);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">1</span>
+          找到腾讯网址安全中心（urlsec.qq.com）
+        </li>
+        <li style="padding:12px 0;padding-left:36px;position:relative;border-bottom:1px dashed #e0d8cc;">
+          <span style="position:absolute;left:0;top:12px;width:24px;height:24px;background:linear-gradient(135deg,#ff9aa2 0%,#ffb6c1 100%);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">2</span>
+          提交申诉，说明网站用途
+        </li>
+        <li style="padding:12px 0;padding-left:36px;position:relative;border-bottom:1px dashed #e0d8cc;">
+          <span style="position:absolute;left:0;top:12px;width:24px;height:24px;background:linear-gradient(135deg,#ff9aa2 0%,#ffb6c1 100%);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">3</span>
+          等待审核，收到邮件回复"已去除风险提示"
+        </li>
+        <li style="padding:12px 0;padding-left:36px;position:relative;">
+          <span style="position:absolute;left:0;top:12px;width:24px;height:24px;background:linear-gradient(135deg,#ff9aa2 0%,#ffb6c1 100%);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">4</span>
+          但微信里还是有红色警告（缓存问题，等待同步中）
+        </li>
+      </ul>
+      <div class="note-card" style="margin-top:25px;">
+        <div class="note-card-title">📝 当前状态</div>
+        <p>腾讯已解封 ✓</p>
+        <p>微信缓存同步中 ⏳</p>
+      </div>
+    </div>
+    <div class="hand-drawn-line"></div>
+    <div class="corner-decoration bottom-left"></div>
+    <div class="corner-decoration bottom-right"></div>
+  </div>
+
+  <!-- ===== 第4屏：心得 ===== -->
+  <div class="content-page">
+    <div class="corner-decoration top-left"></div>
+    <div class="corner-decoration top-right"></div>
+    <div class="page-number">— 3/3 —</div>
+    <div class="section-header">
+      <span class="section-icon">💡</span>
+      <h2 class="section-title">这件事让我明白</h2>
+    </div>
+    <div class="section-content">
+      <p>做软件不只是"做出来"就完了——</p>
+      <div class="note-card highlight">
+        <p style="text-align:center;font-size:17px;font-weight:600;color:#5a4a3a;">
+          部署、安全认证、平台规则<br>
+          每一关都是新的学问
+        </p>
+      </div>
+      <p style="text-align:center;margin-top:30px;font-size:18px;color:#8b7355;">
+        这就是第一课 🎓
+      </p>
+      <p style="text-align:center;margin-top:40px;font-size:13px;color:#b8a890;">
+        持续记录中，每一个坑都是成长的印记
+      </p>
+    </div>
+    <div class="hand-drawn-line"></div>
+    <div class="corner-decoration bottom-left"></div>
+    <div class="corner-decoration bottom-right"></div>
+  </div>
+
+  <!-- ===== 第5屏：结尾 ===== -->
+  <div class="end-page">
+    <div class="corner-decoration top-left"></div>
+    <div class="corner-decoration top-right"></div>
+    <div class="end-emoji">📝</div>
+    <h2 class="end-title">关注我，看我的造软之路</h2>
+    <p class="end-text">一个教育人的转型记录<br>真实分享每一次踩坑与成长</p>
+    <div class="end-tags">
+      <span class="end-tag">#我不会写代码但我在开发软件</span>
+      <span class="end-tag">#冰山日记</span>
+      <span class="end-tag">#微信链接被封</span>
+      <span class="end-tag">#独立开发</span>
+      <span class="end-tag">#踩坑日记</span>
     </div>
     <div class="corner-decoration bottom-left"></div>
     <div class="corner-decoration bottom-right"></div>
