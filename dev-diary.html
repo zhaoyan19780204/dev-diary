@@ -552,7 +552,7 @@
             软件还没正式用上，第一关就被卡死了。这就是开发的第一课！
           </div>
         </div>
-        <button type="button" class="xhs-btn" onclick="event.stopPropagation(); showXhsNote(1); return false;">
+        <button type="button" class="xhs-btn" data-xhs-id="1">
           📕 查看小红书版本
         </button>
       </div>
@@ -671,6 +671,17 @@
     document.getElementById('total-milestone').textContent = milestone;
   }
   updateStats();
+
+  // 绑定小红书按钮点击事件
+  document.querySelectorAll('.xhs-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const id = parseInt(this.dataset.xhsId);
+      console.log('XHS button clicked, id:', id);
+      showXhsNote(id);
+    });
+  });
 </script>
 </body>
 </html>
