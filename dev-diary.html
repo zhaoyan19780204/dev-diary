@@ -552,7 +552,7 @@
             软件还没正式用上，第一关就被卡死了。这就是开发的第一课！
           </div>
         </div>
-        <button type="button" class="xhs-btn" onclick="showXhsNote(1)">
+        <button type="button" class="xhs-btn" onclick="event.stopPropagation(); showXhsNote(1); return false;">
           📕 查看小红书版本
         </button>
       </div>
@@ -599,8 +599,12 @@
   };
 
   function showXhsNote(id) {
+    console.log('showXhsNote called with id:', id);
     const data = xhsData[id];
-    if (!data) return;
+    if (!data) {
+      console.error('No data found for id:', id);
+      return;
+    }
     let html = `
       <div class="xhs-card-header">
         <div class="series">${data.series}</div>
