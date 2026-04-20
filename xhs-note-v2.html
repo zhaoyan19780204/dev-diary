@@ -34,7 +34,16 @@
     max-width: 390px;
     background: #faf8f5;
     overflow: hidden;
-    padding: 15px; /* 虚线框内边距，确保内容不贴边 */
+    padding: 20px; /* 虚线框内边距 */
+  }
+  
+  /* 截图目标 - 内部内容区（实际截图区域） */
+  .screenshot-target {
+    width: 100%;
+    height: 100%;
+    background: #faf8f5;
+    border-radius: 8px;
+    overflow: hidden;
   }
   
   /* 截图提示 - 仅在开发时显示 */
@@ -68,21 +77,22 @@
     .screenshot-hint { display: none !important; }
   }
   
-  /* 页面内容容器 */
-  .page-content {
+  /* 截图目标 - 内部内容区（实际截图区域） */
+  .screenshot-target {
     width: 100%;
     height: 100%;
-    padding: 40px 30px; /* 增加内边距，上下40px，左右30px */
+    padding: 35px 28px; /* 上下35px，左右28px留白 */
     display: flex;
     flex-direction: column;
     justify-content: center;
     position: relative;
     background: #faf8f5;
-    border-radius: 8px; /* 轻微圆角 */
+    border-radius: 8px;
+    overflow: hidden;
   }
   
   /* 纸张纹理 */
-  .page-content::before {
+  .screenshot-target::before {
     content: '';
     position: absolute;
     top: 0;
@@ -423,7 +433,7 @@
   <!-- ===== 第1屏：封面 ===== -->
   <div class="screenshot-area">
     <div class="screenshot-hint">📸 截图区域 (3:4)</div>
-    <div class="page-content">
+    <div class="screenshot-target">
       <div class="corner-decoration top-left"></div>
       <div class="corner-decoration top-right"></div>
       <div class="cover-content">
@@ -443,7 +453,7 @@
   <!-- ===== 第2屏：故事开始 ===== -->
   <div class="screenshot-area">
     <div class="screenshot-hint">📸 截图区域 (3:4)</div>
-    <div class="page-content">
+    <div class="screenshot-target">
       <div class="corner-decoration top-left"></div>
       <div class="corner-decoration top-right"></div>
       <div class="page-number">— 1/5 —</div>
@@ -472,7 +482,7 @@
   <!-- ===== 第3屏：Vibe Coding ===== -->
   <div class="screenshot-area">
     <div class="screenshot-hint">📸 截图区域 (3:4)</div>
-    <div class="page-content">
+    <div class="screenshot-target">
       <div class="corner-decoration top-left"></div>
       <div class="corner-decoration top-right"></div>
       <div class="page-number">— 2/5 —</div>
@@ -500,7 +510,7 @@
   <!-- ===== 第4屏：说干就干 ===== -->
   <div class="screenshot-area">
     <div class="screenshot-hint">📸 截图区域 (3:4)</div>
-    <div class="page-content">
+    <div class="screenshot-target">
       <div class="corner-decoration top-left"></div>
       <div class="corner-decoration top-right"></div>
       <div class="page-number">— 3/5 —</div>
@@ -528,7 +538,7 @@
   <!-- ===== 第5屏：结果 ===== -->
   <div class="screenshot-area">
     <div class="screenshot-hint">📸 截图区域 (3:4)</div>
-    <div class="page-content">
+    <div class="screenshot-target">
       <div class="corner-decoration top-left"></div>
       <div class="corner-decoration top-right"></div>
       <div class="page-number">— 4/5 —</div>
@@ -558,7 +568,7 @@
   <!-- ===== 第6屏：感悟 ===== -->
   <div class="screenshot-area">
     <div class="screenshot-hint">📸 截图区域 (3:4)</div>
-    <div class="page-content">
+    <div class="screenshot-target">
       <div class="corner-decoration top-left"></div>
       <div class="corner-decoration top-right"></div>
       <div class="page-number">— 5/5 —</div>
@@ -592,7 +602,7 @@
   <!-- ===== 第7屏：结尾 ===== -->
   <div class="screenshot-area">
     <div class="screenshot-hint">📸 截图区域 (3:4)</div>
-    <div class="page-content">
+    <div class="screenshot-target">
       <div class="corner-decoration top-left"></div>
       <div class="corner-decoration top-right"></div>
       <div class="end-content">
@@ -620,7 +630,7 @@
   <!-- ===== 第1屏：封面 ===== -->
   <div class="screenshot-area">
     <div class="screenshot-hint">📸 截图区域 (3:4)</div>
-    <div class="page-content">
+    <div class="screenshot-target">
       <div class="corner-decoration top-left"></div>
       <div class="corner-decoration top-right"></div>
       <div class="cover-content">
@@ -640,7 +650,7 @@
   <!-- ===== 第2屏：发生了什么 ===== -->
   <div class="screenshot-area">
     <div class="screenshot-hint">📸 截图区域 (3:4)</div>
-    <div class="page-content">
+    <div class="screenshot-target">
       <div class="corner-decoration top-left"></div>
       <div class="corner-decoration top-right"></div>
       <div class="page-number">— 1/3 —</div>
@@ -667,7 +677,7 @@
   <!-- ===== 第3屏：解决过程 ===== -->
   <div class="screenshot-area">
     <div class="screenshot-hint">📸 截图区域 (3:4)</div>
-    <div class="page-content">
+    <div class="screenshot-target">
       <div class="corner-decoration top-left"></div>
       <div class="corner-decoration top-right"></div>
       <div class="page-number">— 2/3 —</div>
@@ -708,7 +718,7 @@
   <!-- ===== 第4屏：心得 ===== -->
   <div class="screenshot-area">
     <div class="screenshot-hint">📸 截图区域 (3:4)</div>
-    <div class="page-content">
+    <div class="screenshot-target">
       <div class="corner-decoration top-left"></div>
       <div class="corner-decoration top-right"></div>
       <div class="page-number">— 3/3 —</div>
@@ -739,7 +749,7 @@
   <!-- ===== 第5屏：结尾 ===== -->
   <div class="screenshot-area">
     <div class="screenshot-hint">📸 截图区域 (3:4)</div>
-    <div class="page-content">
+    <div class="screenshot-target">
       <div class="corner-decoration top-left"></div>
       <div class="corner-decoration top-right"></div>
       <div class="end-content">
