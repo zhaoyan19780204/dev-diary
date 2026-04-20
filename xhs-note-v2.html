@@ -34,6 +34,7 @@
     max-width: 390px;
     background: #faf8f5;
     overflow: hidden;
+    padding: 15px; /* 虚线框内边距，确保内容不贴边 */
   }
   
   /* 截图提示 - 仅在开发时显示 */
@@ -71,12 +72,13 @@
   .page-content {
     width: 100%;
     height: 100%;
-    padding: 30px 24px;
+    padding: 40px 30px; /* 增加内边距，上下40px，左右30px */
     display: flex;
     flex-direction: column;
     justify-content: center;
     position: relative;
     background: #faf8f5;
+    border-radius: 8px; /* 轻微圆角 */
   }
   
   /* 纸张纹理 */
@@ -93,39 +95,39 @@
     pointer-events: none;
   }
   
-  /* 四角装饰 */
+  /* 四角装饰 - 调整位置避免压线 */
   .corner-decoration {
     position: absolute;
-    width: 30px;
-    height: 30px;
-    opacity: 0.4;
+    width: 25px;
+    height: 25px;
+    opacity: 0.3;
     z-index: 10;
   }
   
   .corner-decoration.top-left {
-    top: 15px;
-    left: 15px;
+    top: 25px;
+    left: 25px;
     border-top: 2px solid #d4c8b8;
     border-left: 2px solid #d4c8b8;
   }
   
   .corner-decoration.top-right {
-    top: 15px;
-    right: 15px;
+    top: 25px;
+    right: 25px;
     border-top: 2px solid #d4c8b8;
     border-right: 2px solid #d4c8b8;
   }
   
   .corner-decoration.bottom-left {
-    bottom: 15px;
-    left: 15px;
+    bottom: 25px;
+    left: 25px;
     border-bottom: 2px solid #d4c8b8;
     border-left: 2px solid #d4c8b8;
   }
   
   .corner-decoration.bottom-right {
-    bottom: 15px;
-    right: 15px;
+    bottom: 25px;
+    right: 25px;
     border-bottom: 2px solid #d4c8b8;
     border-right: 2px solid #d4c8b8;
   }
@@ -156,7 +158,7 @@
   }
   
   .cover-title {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 800;
     line-height: 1.5;
     color: #5a4a3a;
@@ -202,7 +204,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     position: relative;
     z-index: 1;
   }
@@ -226,14 +228,14 @@
   }
   
   .section-content p {
-    margin-bottom: 12px;
+    margin-bottom: 10px;
   }
   
   .page-number {
     text-align: center;
     font-size: 11px;
     color: #b8a890;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     position: relative;
     z-index: 1;
   }
@@ -241,8 +243,8 @@
   .note-card {
     background: #fff;
     border-radius: 10px;
-    padding: 15px;
-    margin: 15px 0;
+    padding: 12px;
+    margin: 12px 0;
     box-shadow: 0 3px 12px rgba(0,0,0,0.06);
     border: 1px solid #f0e8dc;
     position: relative;
