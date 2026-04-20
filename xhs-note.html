@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>我不会写代码，但我在开发软件 | Day 1</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    background: #f5f5f5;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    line-height: 1.8;
+    color: #333;
+  }
+  
+  /* 手机容器 */
+  .phone-frame {
+    max-width: 414px;
+    margin: 0 auto;
+    background: #fff;
+    min-height: 100vh;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  }
+  
+  /* ===== 封面页 ===== */
+  .cover-page {
+    background: linear-gradient(135deg, #FF2442 0%, #FF6B6B 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 30px;
+    text-align: center;
+    color: white;
+    position: relative;
+  }
+  
+  .cover-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.3;
+  }
+  
+  .cover-content {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .cover-series {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+  }
+  
+  .cover-title {
+    font-size: 32px;
+    font-weight: 900;
+    line-height: 1.4;
+    margin-bottom: 30px;
+  }
+  
+  .cover-emoji {
+    font-size: 80px;
+    margin-bottom: 30px;
+  }
+  
+  .cover-date {
+    font-size: 14px;
+    opacity: 0.8;
+    margin-top: 40px;
+  }
+  
+  .cover-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 30px;
+  }
+  
+  .cover-tag {
+    background: rgba(255,255,255,0.2);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+  }
+  
+  /* ===== 内容页 ===== */
+  .content-page {
+    min-height: 100vh;
+    padding: 50px 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 3px dashed #eee;
+  }
+  
+  .page-number {
+    text-align: center;
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 30px;
+  }
+  
+  .section-icon {
+    font-size: 48px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .section-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: #FF2442;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  
+  .section-content {
+    font-size: 17px;
+    line-height: 2;
+    color: #444;
+  }
+  
+  .section-content p {
+    margin-bottom: 16px;
+  }
+  
+  .highlight-box {
+    background: #fff5f5;
+    border-left: 4px solid #FF2442;
+    padding: 20px;
+    margin: 24px 0;
+    border-radius: 0 12px 12px 0;
+  }
+  
+  .step-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .step-list li {
+    padding: 12px 0;
+    padding-left: 36px;
+    position: relative;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  .step-list li:last-child {
+    border-bottom: none;
+  }
+  
+  .step-num {
+    position: absolute;
+    left: 0;
+    top: 12px;
+    width: 24px;
+    height: 24px;
+    background: #FF2442;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  
+  /* ===== 结尾页 ===== */
+  .end-page {
+    background: #1a1a2e;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 30px;
+    text-align: center;
+    color: white;
+  }
+  
+  .end-emoji {
+    font-size: 60px;
+    margin-bottom: 30px;
+  }
+  
+  .end-title {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 20px;
+  }
+  
+  .end-text {
+    font-size: 16px;
+    color: #aaa;
+    line-height: 1.8;
+    max-width: 300px;
+  }
+  
+  .end-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 40px;
+  }
+  
+  .end-tag {
+    background: rgba(255,255,255,0.1);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    color: #FF6B6B;
+  }
+  
+  /* 截图提示 */
+  .screenshot-hint {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 13px;
+    z-index: 100;
+  }
+  
+  @media print {
+    .screenshot-hint { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="phone-frame">
+
+  <!-- ===== 第1屏：封面 ===== -->
+  <div class="cover-page">
+    <div class="cover-content">
+      <div class="cover-series">我不会写代码，但我在开发软件</div>
+      <div class="cover-emoji">🚫</div>
+      <h1 class="cover-title">做软件第1天<br>我的链接就被微信封了</h1>
+      <div class="cover-date">2026.04.20 · Day 1</div>
+      <div class="cover-tags">
+        <span class="cover-tag">#开发日记</span>
+        <span class="cover-tag">#踩坑记录</span>
+        <span class="cover-tag">#非程序员</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 第2屏：发生了什么 ===== -->
+  <div class="content-page">
+    <div class="page-number">— 1/4 —</div>
+    <div class="section-icon">📍</div>
+    <h2 class="section-title">今天发生了什么</h2>
+    <div class="section-content">
+      <p>兴冲冲地把刚做好的「冰山日记」网页链接发进学员群——</p>
+      <p>结果……</p>
+      <div class="highlight-box">
+        <strong>学员一点开，直接跳出来一个巨大的红色页面：</strong><br><br>
+        「⚠️ 已停止访问该网页」<br><br>
+        微信判定我的链接"存在安全风险"，所有人都看不了。
+      </div>
+      <p>软件还没正式用上，第一关就被卡死了。</p>
+    </div>
+  </div>
+
+  <!-- ===== 第3屏：解决过程 ===== -->
+  <div class="content-page">
+    <div class="page-number">— 2/4 —</div>
+    <div class="section-icon">🔍</div>
+    <h2 class="section-title">我是怎么处理的</h2>
+    <div class="section-content">
+      <ul class="step-list">
+        <li>
+          <span class="step-num">1</span>
+          找到腾讯网址安全中心（urlsec.qq.com）
+        </li>
+        <li>
+          <span class="step-num">2</span>
+          提交申诉，说明网站用途
+        </li>
+        <li>
+          <span class="step-num">3</span>
+          等待审核，收到邮件回复"已去除风险提示"
+        </li>
+        <li>
+          <span class="step-num">4</span>
+          但微信里还是有红色警告（缓存问题，等待同步中）
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===== 第4屏：心得 ===== -->
+  <div class="content-page">
+    <div class="page-number">— 3/4 —</div>
+    <div class="section-icon">💡</div>
+    <h2 class="section-title">这件事让我明白</h2>
+    <div class="section-content">
+      <p>做软件不只是"做出来"就完了——</p>
+      <div class="highlight-box">
+        部署、安全认证、平台规则，每一关都是新的学问。
+      </div>
+      <p>这就是第一课。</p>
+      <p style="margin-top: 30px; text-align: center; color: #999; font-size: 15px;">
+        持续记录中，每一个坑都是成长的印记
+      </p>
+    </div>
+  </div>
+
+  <!-- ===== 第5屏：结尾 ===== -->
+  <div class="end-page">
+    <div class="end-emoji">📝</div>
+    <h2 class="end-title">关注我，看我的造软之路</h2>
+    <p class="end-text">一个教育人的转型记录<br>真实分享每一次踩坑与成长</p>
+    <div class="end-tags">
+      <span class="end-tag">#我不会写代码但我在开发软件</span>
+      <span class="end-tag">#冰山日记</span>
+      <span class="end-tag">#微信链接被封</span>
+      <span class="end-tag">#独立开发</span>
+    </div>
+  </div>
+
+</div>
+
+<div class="screenshot-hint">💡 提示：每屏可单独截图，适合发小红书/视频号</div>
+
+</body>
+</html>
