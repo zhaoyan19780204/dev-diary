@@ -8,44 +8,69 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   
   body {
-    background: #f5f5f5;
+    background: #e8e4df;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
     line-height: 1.8;
-    color: #333;
+    color: #4a4a4a;
   }
   
   /* 手机容器 */
   .phone-frame {
     max-width: 414px;
     margin: 0 auto;
-    background: #fff;
+    background: #faf8f5;
     min-height: 100vh;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1);
-  }
-  
-  /* ===== 封面页 ===== */
-  .cover-page {
-    background: linear-gradient(135deg, #FF2442 0%, #FF6B6B 100%);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 30px;
-    text-align: center;
-    color: white;
+    box-shadow: 0 0 30px rgba(0,0,0,0.15);
     position: relative;
   }
   
-  .cover-page::before {
+  /* 纸张纹理背景 */
+  .phone-frame::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    opacity: 0.3;
+    background: 
+      /* 细微噪点纹理 */
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  /* ===== 封面页 ===== */
+  .cover-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 30px;
+    text-align: center;
+    position: relative;
+    background: linear-gradient(180deg, #faf8f5 0%, #f5f0e8 100%);
+    border-bottom: 3px dashed #d4c8b8;
+  }
+  
+  /* 顶部装饰胶带 */
+  .cover-page::before {
+    content: '';
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-2deg);
+    width: 120px;
+    height: 35px;
+    background: repeating-linear-gradient(
+      90deg,
+      rgba(255,182,193,0.6) 0px,
+      rgba(255,182,193,0.6) 10px,
+      transparent 10px,
+      transparent 15px
+    );
+    border: 2px solid rgba(255,182,193,0.8);
+    border-radius: 3px;
   }
   
   .cover-content {
@@ -53,44 +78,65 @@
     z-index: 1;
   }
   
-  .cover-series {
-    font-size: 14px;
-    opacity: 0.9;
-    margin-bottom: 20px;
-    letter-spacing: 2px;
-  }
-  
-  .cover-title {
-    font-size: 32px;
-    font-weight: 900;
-    line-height: 1.4;
+  .cover-date-tag {
+    display: inline-block;
+    background: #fff;
+    border: 2px solid #e8d5c4;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 13px;
+    color: #8b7355;
     margin-bottom: 30px;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.05);
   }
   
   .cover-emoji {
-    font-size: 80px;
-    margin-bottom: 30px;
+    font-size: 70px;
+    margin-bottom: 25px;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
   }
   
-  .cover-date {
+  .cover-title {
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.5;
+    color: #5a4a3a;
+    margin-bottom: 20px;
+  }
+  
+  .cover-subtitle {
+    font-size: 15px;
+    color: #8b7355;
+    margin-bottom: 40px;
+  }
+  
+  /* 便签装饰 */
+  .sticky-note {
+    background: #fff9c4;
+    padding: 20px 25px;
+    border-radius: 2px 15px 2px 2px;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.1);
+    transform: rotate(-1deg);
+    margin-top: 20px;
+    position: relative;
+  }
+  
+  .sticky-note::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 20px;
+    width: 40px;
+    height: 20px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  
+  .sticky-note-text {
     font-size: 14px;
-    opacity: 0.8;
-    margin-top: 40px;
-  }
-  
-  .cover-tags {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 30px;
-  }
-  
-  .cover-tag {
-    background: rgba(255,255,255,0.2);
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 13px;
+    color: #6b5a4a;
+    font-weight: 600;
   }
   
   /* ===== 内容页 ===== */
@@ -100,58 +146,113 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border-bottom: 3px dashed #eee;
+    border-bottom: 3px dashed #d4c8b8;
+    position: relative;
+    background: #faf8f5;
+  }
+  
+  /* 方格纸背景 */
+  .content-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      linear-gradient(#e8e0d5 1px, transparent 1px),
+      linear-gradient(90deg, #e8e0d5 1px, transparent 1px);
+    background-size: 25px 25px;
+    opacity: 0.4;
+    pointer-events: none;
   }
   
   .page-number {
     text-align: center;
     font-size: 12px;
-    color: #999;
+    color: #b8a890;
     margin-bottom: 30px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 1;
   }
   
   .section-icon {
-    font-size: 48px;
-    text-align: center;
-    margin-bottom: 20px;
+    font-size: 32px;
   }
   
   .section-title {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 800;
-    color: #FF2442;
-    margin-bottom: 24px;
-    text-align: center;
+    color: #5a4a3a;
   }
   
   .section-content {
-    font-size: 17px;
+    font-size: 16px;
     line-height: 2;
-    color: #444;
+    color: #5a5a5a;
+    position: relative;
+    z-index: 1;
   }
   
   .section-content p {
     margin-bottom: 16px;
   }
   
-  .highlight-box {
-    background: #fff5f5;
-    border-left: 4px solid #FF2442;
+  /* 便签卡片 */
+  .note-card {
+    background: #fff;
+    border-radius: 12px;
     padding: 20px;
-    margin: 24px 0;
-    border-radius: 0 12px 12px 0;
+    margin: 20px 0;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+    border: 1px solid #f0e8dc;
+    position: relative;
   }
   
+  .note-card::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 25px;
+    width: 30px;
+    height: 15px;
+    background: linear-gradient(135deg, #ffb6c1 0%, #ffc0cb 100%);
+    border-radius: 2px;
+    opacity: 0.8;
+  }
+  
+  .note-card.highlight {
+    background: linear-gradient(135deg, #fff5f5 0%, #fff 100%);
+    border-left: 4px solid #ff9aa2;
+  }
+  
+  .note-card-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #8b7355;
+    margin-bottom: 10px;
+  }
+  
+  /* 步骤列表 */
   .step-list {
     list-style: none;
     padding: 0;
   }
   
   .step-list li {
-    padding: 12px 0;
-    padding-left: 36px;
+    padding: 14px 0;
+    padding-left: 45px;
     position: relative;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px dashed #e0d8cc;
   }
   
   .step-list li:last-child {
@@ -162,81 +263,154 @@
     position: absolute;
     left: 0;
     top: 12px;
-    width: 24px;
-    height: 24px;
-    background: #FF2442;
+    width: 28px;
+    height: 28px;
+    background: linear-gradient(135deg, #ff9aa2 0%, #ffb6c1 100%);
     color: white;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 700;
+    box-shadow: 0 2px 5px rgba(255,154,162,0.3);
+  }
+  
+  /* 手绘下划线 */
+  .hand-drawn-line {
+    width: 60px;
+    height: 3px;
+    background: #d4c8b8;
+    border-radius: 2px;
+    margin: 30px auto;
+    position: relative;
+  }
+  
+  .hand-drawn-line::before,
+  .hand-drawn-line::after {
+    content: '';
+    position: absolute;
+    height: 3px;
+    background: #d4c8b8;
+    border-radius: 2px;
+  }
+  
+  .hand-drawn-line::before {
+    width: 40px;
+    left: -50px;
+    top: 2px;
+    transform: rotate(-5deg);
+  }
+  
+  .hand-drawn-line::after {
+    width: 40px;
+    right: -50px;
+    top: -2px;
+    transform: rotate(3deg);
   }
   
   /* ===== 结尾页 ===== */
   .end-page {
-    background: #1a1a2e;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 40px 30px;
+    padding: 50px 30px;
     text-align: center;
-    color: white;
+    background: linear-gradient(180deg, #f5f0e8 0%, #faf8f5 100%);
+    position: relative;
+  }
+  
+  /* 底部装饰 */
+  .end-page::before {
+    content: '';
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: repeating-linear-gradient(
+      90deg,
+      #d4c8b8 0px,
+      #d4c8b8 8px,
+      transparent 8px,
+      transparent 12px
+    );
+    border-radius: 2px;
   }
   
   .end-emoji {
-    font-size: 60px;
-    margin-bottom: 30px;
+    font-size: 50px;
+    margin-bottom: 25px;
   }
   
   .end-title {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 800;
-    margin-bottom: 20px;
+    color: #5a4a3a;
+    margin-bottom: 15px;
   }
   
   .end-text {
-    font-size: 16px;
-    color: #aaa;
+    font-size: 15px;
+    color: #8b7355;
     line-height: 1.8;
-    max-width: 300px;
+    max-width: 280px;
+    margin-bottom: 30px;
   }
   
   .end-tags {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
-    margin-top: 40px;
+    gap: 8px;
   }
   
   .end-tag {
-    background: rgba(255,255,255,0.1);
-    padding: 8px 16px;
+    background: #fff;
+    border: 1px solid #e8ddd0;
+    padding: 6px 14px;
     border-radius: 20px;
-    font-size: 14px;
-    color: #FF6B6B;
-  }
-  
-  /* 截图提示 */
-  .screenshot-hint {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0,0,0,0.8);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 30px;
     font-size: 13px;
-    z-index: 100;
+    color: #8b7355;
   }
   
-  @media print {
-    .screenshot-hint { display: none; }
+  /* 角落装饰 */
+  .corner-decoration {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    opacity: 0.3;
+  }
+  
+  .corner-decoration.top-left {
+    top: 20px;
+    left: 20px;
+    border-top: 3px solid #d4c8b8;
+    border-left: 3px solid #d4c8b8;
+  }
+  
+  .corner-decoration.top-right {
+    top: 20px;
+    right: 20px;
+    border-top: 3px solid #d4c8b8;
+    border-right: 3px solid #d4c8b8;
+  }
+  
+  .corner-decoration.bottom-left {
+    bottom: 20px;
+    left: 20px;
+    border-bottom: 3px solid #d4c8b8;
+    border-left: 3px solid #d4c8b8;
+  }
+  
+  .corner-decoration.bottom-right {
+    bottom: 20px;
+    right: 20px;
+    border-bottom: 3px solid #d4c8b8;
+    border-right: 3px solid #d4c8b8;
   }
 </style>
 </head>
@@ -246,41 +420,55 @@
 
   <!-- ===== 第1屏：封面 ===== -->
   <div class="cover-page">
+    <div class="corner-decoration top-left"></div>
+    <div class="corner-decoration top-right"></div>
     <div class="cover-content">
-      <div class="cover-series">我不会写代码，但我在开发软件</div>
+      <div class="cover-date-tag">📅 2026.04.20 · Day 1</div>
       <div class="cover-emoji">🚫</div>
       <h1 class="cover-title">做软件第1天<br>我的链接就被微信封了</h1>
-      <div class="cover-date">2026.04.20 · Day 1</div>
-      <div class="cover-tags">
-        <span class="cover-tag">#开发日记</span>
-        <span class="cover-tag">#踩坑记录</span>
-        <span class="cover-tag">#非程序员</span>
+      <p class="cover-subtitle">一个教育人的造软日记</p>
+      <div class="sticky-note">
+        <span class="sticky-note-text">#开发日记 #踩坑记录 #非程序员开发</span>
       </div>
     </div>
+    <div class="corner-decoration bottom-left"></div>
+    <div class="corner-decoration bottom-right"></div>
   </div>
 
   <!-- ===== 第2屏：发生了什么 ===== -->
   <div class="content-page">
+    <div class="corner-decoration top-left"></div>
+    <div class="corner-decoration top-right"></div>
     <div class="page-number">— 1/4 —</div>
-    <div class="section-icon">📍</div>
-    <h2 class="section-title">今天发生了什么</h2>
+    <div class="section-header">
+      <span class="section-icon">📍</span>
+      <h2 class="section-title">今天发生了什么</h2>
+    </div>
     <div class="section-content">
       <p>兴冲冲地把刚做好的「冰山日记」网页链接发进学员群——</p>
       <p>结果……</p>
-      <div class="highlight-box">
-        <strong>学员一点开，直接跳出来一个巨大的红色页面：</strong><br><br>
-        「⚠️ 已停止访问该网页」<br><br>
-        微信判定我的链接"存在安全风险"，所有人都看不了。
+      <div class="note-card highlight">
+        <div class="note-card-title">💥 意外状况</div>
+        <p>学员一点开，直接跳出来一个巨大的<strong style="color:#ff6b6b;">红色警告页面</strong>：</p>
+        <p style="margin-top:10px;font-size:15px;">「⚠️ 已停止访问该网页」</p>
+        <p style="margin-top:10px;">微信判定我的链接"存在安全风险"，所有人都看不了。</p>
       </div>
-      <p>软件还没正式用上，第一关就被卡死了。</p>
+      <p>软件还没正式用上，第一关就被卡死了。😭</p>
     </div>
+    <div class="hand-drawn-line"></div>
+    <div class="corner-decoration bottom-left"></div>
+    <div class="corner-decoration bottom-right"></div>
   </div>
 
   <!-- ===== 第3屏：解决过程 ===== -->
   <div class="content-page">
+    <div class="corner-decoration top-left"></div>
+    <div class="corner-decoration top-right"></div>
     <div class="page-number">— 2/4 —</div>
-    <div class="section-icon">🔍</div>
-    <h2 class="section-title">我是怎么处理的</h2>
+    <div class="section-header">
+      <span class="section-icon">🔍</span>
+      <h2 class="section-title">我是怎么处理的</h2>
+    </div>
     <div class="section-content">
       <ul class="step-list">
         <li>
@@ -300,28 +488,50 @@
           但微信里还是有红色警告（缓存问题，等待同步中）
         </li>
       </ul>
+      <div class="note-card" style="margin-top:25px;">
+        <div class="note-card-title">📝 当前状态</div>
+        <p>腾讯已解封 ✓</p>
+        <p>微信缓存同步中 ⏳</p>
+      </div>
     </div>
+    <div class="hand-drawn-line"></div>
+    <div class="corner-decoration bottom-left"></div>
+    <div class="corner-decoration bottom-right"></div>
   </div>
 
   <!-- ===== 第4屏：心得 ===== -->
   <div class="content-page">
+    <div class="corner-decoration top-left"></div>
+    <div class="corner-decoration top-right"></div>
     <div class="page-number">— 3/4 —</div>
-    <div class="section-icon">💡</div>
-    <h2 class="section-title">这件事让我明白</h2>
+    <div class="section-header">
+      <span class="section-icon">💡</span>
+      <h2 class="section-title">这件事让我明白</h2>
+    </div>
     <div class="section-content">
       <p>做软件不只是"做出来"就完了——</p>
-      <div class="highlight-box">
-        部署、安全认证、平台规则，每一关都是新的学问。
+      <div class="note-card highlight">
+        <p style="text-align:center;font-size:17px;font-weight:600;color:#5a4a3a;">
+          部署、安全认证、平台规则<br>
+          每一关都是新的学问
+        </p>
       </div>
-      <p>这就是第一课。</p>
-      <p style="margin-top: 30px; text-align: center; color: #999; font-size: 15px;">
+      <p style="text-align:center;margin-top:30px;font-size:18px;color:#8b7355;">
+        这就是第一课 🎓
+      </p>
+      <p style="text-align:center;margin-top:40px;font-size:13px;color:#b8a890;">
         持续记录中，每一个坑都是成长的印记
       </p>
     </div>
+    <div class="hand-drawn-line"></div>
+    <div class="corner-decoration bottom-left"></div>
+    <div class="corner-decoration bottom-right"></div>
   </div>
 
   <!-- ===== 第5屏：结尾 ===== -->
   <div class="end-page">
+    <div class="corner-decoration top-left"></div>
+    <div class="corner-decoration top-right"></div>
     <div class="end-emoji">📝</div>
     <h2 class="end-title">关注我，看我的造软之路</h2>
     <p class="end-text">一个教育人的转型记录<br>真实分享每一次踩坑与成长</p>
@@ -330,12 +540,13 @@
       <span class="end-tag">#冰山日记</span>
       <span class="end-tag">#微信链接被封</span>
       <span class="end-tag">#独立开发</span>
+      <span class="end-tag">#踩坑日记</span>
     </div>
+    <div class="corner-decoration bottom-left"></div>
+    <div class="corner-decoration bottom-right"></div>
   </div>
 
 </div>
-
-<div class="screenshot-hint">💡 提示：每屏可单独截图，适合发小红书/视频号</div>
 
 </body>
 </html>
