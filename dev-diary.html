@@ -552,9 +552,9 @@
             软件还没正式用上，第一关就被卡死了。这就是开发的第一课！
           </div>
         </div>
-        <a href="javascript:void(0)" class="xhs-btn" onclick="openXhs(1)">
+        <button type="button" class="xhs-btn" onclick="showXhsNote(1)">
           📕 查看小红书版本
-        </a>
+        </button>
       </div>
     </div>
 
@@ -598,7 +598,7 @@
     }
   };
 
-  function openXhs(id) {
+  function showXhsNote(id) {
     const data = xhsData[id];
     if (!data) return;
     let html = `
@@ -620,12 +620,12 @@
     html += `<div class="xhs-tags">`;
     data.tags.forEach(t => { html += `<span class="xhs-tag">${t}</span>`; });
     html += `</div>`;
-    html += `<button class="xhs-copy-btn" onclick="copyXhs(${id})">📋 复制全文去发小红书</button>`;
+    html += `<button type="button" class="xhs-copy-btn" onclick="copyXhsNote(${id})">📋 复制全文去发小红书</button>`;
     document.getElementById('xhs-content').innerHTML = html;
     document.getElementById('modal').classList.add('show');
   }
 
-  function copyXhs(id) {
+  function copyXhsNote(id) {
     const data = xhsData[id];
     let text = data.title + '\n\n';
     data.sections.forEach(s => {
