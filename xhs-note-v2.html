@@ -36,7 +36,7 @@
     overflow: hidden;
   }
   
-  /* 截图提示 */
+  /* 截图提示 - 仅在开发时显示 */
   .screenshot-hint {
     position: absolute;
     top: -25px;
@@ -60,6 +60,11 @@
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
     border-top: 6px solid #ff6b6b;
+  }
+  
+  /* 打印或截图时隐藏提示 */
+  @media print {
+    .screenshot-hint { display: none !important; }
   }
   
   /* 页面内容容器 */
