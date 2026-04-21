@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026年，普通人真的可以编程了——我亲测有效</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    background: #e8e4df;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    line-height: 1.8;
+    color: #4a4a4a;
+  }
+  
+  /* 手机容器 */
+  .phone-frame {
+    max-width: 414px;
+    margin: 0 auto;
+    background: #faf8f5;
+    min-height: 100vh;
+    box-shadow: 0 0 30px rgba(0,0,0,0.15);
+    position: relative;
+  }
+  
+  /* 纸张纹理背景 */
+  .phone-frame::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  /* ===== 封面页 ===== */
+  .cover-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 30px;
+    text-align: center;
+    position: relative;
+    background: linear-gradient(180deg, #faf8f5 0%, #f5f0e8 100%);
+    border-bottom: 3px dashed #d4c8b8;
+  }
+  
+  .cover-page::before {
+    content: '';
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-2deg);
+    width: 120px;
+    height: 35px;
+    background: repeating-linear-gradient(90deg, rgba(255,182,193,0.6) 0px, rgba(255,182,193,0.6) 10px, transparent 10px, transparent 15px);
+    border: 2px solid rgba(255,182,193,0.8);
+    border-radius: 3px;
+  }
+  
+  .cover-content {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .cover-date-tag {
+    display: inline-block;
+    background: #fff;
+    border: 2px solid #e8d5c4;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 13px;
+    color: #8b7355;
+    margin-bottom: 30px;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.05);
+  }
+  
+  .cover-emoji {
+    font-size: 70px;
+    margin-bottom: 25px;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
+  }
+  
+  .cover-title {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.5;
+    color: #5a4a3a;
+    margin-bottom: 20px;
+  }
+  
+  .cover-subtitle {
+    font-size: 15px;
+    color: #8b7355;
+    margin-bottom: 40px;
+  }
+  
+  .sticky-note {
+    background: #fff9c4;
+    padding: 20px 25px;
+    border-radius: 2px 15px 2px 2px;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.1);
+    transform: rotate(-1deg);
+    margin-top: 20px;
+    position: relative;
+  }
+  
+  .sticky-note::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 20px;
+    width: 40px;
+    height: 20px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  
+  .sticky-note-text {
+    font-size: 14px;
+    color: #6b5a4a;
+    font-weight: 600;
+  }
+  
+  /* ===== 内容页 ===== */
+  .content-page {
+    min-height: 100vh;
+    padding: 50px 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 3px dashed #d4c8b8;
+    position: relative;
+    background: #faf8f5;
+  }
+  
+  .content-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(#e8e0d5 1px, transparent 1px), linear-gradient(90deg, #e8e0d5 1px, transparent 1px);
+    background-size: 25px 25px;
+    opacity: 0.4;
+    pointer-events: none;
+  }
+  
+  .page-number {
+    text-align: center;
+    font-size: 12px;
+    color: #b8a890;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .section-icon {
+    font-size: 32px;
+  }
+  
+  .section-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: #5a4a3a;
+  }
+  
+  .section-content {
+    font-size: 16px;
+    line-height: 2;
+    color: #5a5a5a;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .section-content p {
+    margin-bottom: 16px;
+  }
+  
+  .note-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+    border: 1px solid #f0e8dc;
+    position: relative;
+  }
+  
+  .note-card::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 25px;
+    width: 30px;
+    height: 15px;
+    background: linear-gradient(135deg, #ffb6c1 0%, #ffc0cb 100%);
+    border-radius: 2px;
+    opacity: 0.8;
+  }
+  
+  .note-card.highlight {
+    background: linear-gradient(135deg, #fff5f5 0%, #fff 100%);
+    border-left: 4px solid #ff9aa2;
+  }
+  
+  .note-card-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #8b7355;
+    margin-bottom: 10px;
+  }
+  
+  .highlight-text {
+    color: #ff6b6b;
+    font-weight: 600;
+  }
+  
+  .hand-drawn-line {
+    width: 60px;
+    height: 3px;
+    background: #d4c8b8;
+    border-radius: 2px;
+    margin: 30px auto;
+    position: relative;
+  }
+  
+  .hand-drawn-line::before, .hand-drawn-line::after {
+    content: '';
+    position: absolute;
+    height: 3px;
+    background: #d4c8b8;
+    border-radius: 2px;
+  }
+  
+  .hand-drawn-line::before {
+    width: 40px;
+    left: -50px;
+    top: 2px;
+    transform: rotate(-5deg);
+  }
+  
+  .hand-drawn-line::after {
+    width: 40px;
+    right: -50px;
+    top: -2px;
+    transform: rotate(3deg);
+  }
+  
+  /* ===== 结尾页 ===== */
+  .end-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 30px;
+    text-align: center;
+    background: linear-gradient(180deg, #f5f0e8 0%, #faf8f5 100%);
+    position: relative;
+  }
+  
+  .end-page::before {
+    content: '';
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: repeating-linear-gradient(90deg, #d4c8b8 0px, #d4c8b8 8px, transparent 8px, transparent 12px);
+    border-radius: 2px;
+  }
+  
+  .end-emoji {
+    font-size: 50px;
+    margin-bottom: 25px;
+  }
+  
+  .end-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: #5a4a3a;
+    margin-bottom: 15px;
+  }
+  
+  .end-text {
+    font-size: 15px;
+    color: #8b7355;
+    line-height: 1.8;
+    max-width: 280px;
+    margin-bottom: 30px;
+  }
+  
+  .end-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+  
+  .end-tag {
+    background: #fff;
+    border: 1px solid #e8ddd0;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    color: #8b7355;
+  }
+  
+  .corner-decoration {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    opacity: 0.3;
+  }
+  
+  .corner-decoration.top-left {
+    top: 20px;
+    left: 20px;
+    border-top: 3px solid #d4c8b8;
+    border-left: 3px solid #d4c8b8;
+  }
+  
+  .corner-decoration.top-right {
+    top: 20px;
+    right: 20px;
+    border-top: 3px solid #d4c8b8;
+    border-right: 3px solid #d4c8b8;
+  }
+  
+  .corner-decoration.bottom-left {
+    bottom: 20px;
+    left: 20px;
+    border-bottom: 3px solid #d4c8b8;
+    border-left: 3px solid #d4c8b8;
+  }
+  
+  .corner-decoration.bottom-right {
+    bottom: 20px;
+    right: 20px;
+    border-bottom: 3px solid #d4c8b8;
+    border-right: 3px solid #d4c8b8;
+  }
+</style>
+</head>
+<body>
+
+<div class="phone-frame">
+
+  <!-- ===== 第1屏：封面 ===== -->
+  <div class="cover-page">
+    <div class="corner-decoration top-left"></div>
+    <div class="corner-decoration top-right"></div>
+    <div class="cover-content">
+      <div class="cover-date-tag">📅 2026.02 · 我的编程启蒙</div>
+    <div class="cover-emoji">💻</div>
+      <h1 class="cover-title">2026年<br>普通人真的可以编程了<br>——我亲测有效</h1>
+      <p class="cover-subtitle">一天编程没学过，我做出了人生第一个工具</p>
+      <div class="sticky-note">
+        <span class="sticky-note-text">#VibeCoding #AI编程 #从0到1</span>
+      </div>
+    </div>
+    <div class="corner-decoration bottom-left"></div>
+    <div class="corner-decoration bottom-right"></div>
+  </div>
+
+  <!-- ===== 第2屏：故事开始 ===== -->
+  <div class="content-page">
+    <div class="corner-decoration top-left"></div>
+    <div class="corner-decoration top-right"></div>
+    <div class="page-number">— 1/5 —</div>
+    <div class="section-header">
+      <span class="section-icon">📍</span>
+      <h2 class="section-title">故事从朋友的一句话开始</h2>
+    </div>
+    <div class="section-content">
+      <p>2月底，我一个老大哥跟我说：<strong>"走，一起去学编程。"</strong></p>
+      <p>说实话，我当时内心是拒绝的。</p>
+      <p>我一个搞教育的，学编程干嘛？跟我有什么关系？</p>
+      <div class="note-card">
+        <div class="note-card-title">💭 当时的想法</div>
+        <p>编程？那是程序员的事。</p>
+        <p>我一个外行，学了有用吗？</p>
+      </div>
+      <p>但这位老大哥不一样。他带着我们做过很多有意义的事情，我愿意相信他。</p>
+      <p>既然他说值得学，那就去听听看吧。</p>
+      <p>没想到，这一听，<strong class="highlight-text">彻底改变了我对"编程"这两个字的认知。</strong></p>
+    </div>
+    <div class="hand-drawn-line"></div>
+    <div class="corner-decoration bottom-left"></div>
+    <div class="corner-decoration bottom-right"></div>
+  </div>
+
+  <!-- ===== 第3屏：Vibe Coding ===== -->
+  <div class="content-page">
+    <div class="corner-decoration top-left"></div>
+    <div class="corner-decoration top-right"></div>
+    <div class="page-number">— 2/5 —</div>
+    <div class="section-header">
+      <span class="section-icon">🎓</span>
+      <h2 class="section-title">那节课讲了什么</h2>
+    </div>
+    <div class="section-content">
+      <p>老师讲的是 <strong>Vibe Coding</strong>。</p>
+      <p>他说，<strong>2025年开始，世界变了——普通人可以编程了。</strong></p>
+      <div class="note-card highlight">
+        <div class="note-card-title">💡 什么是 Vibe Coding？</div>
+        <p>Andrej Karpathy（特斯拉前AI负责人）在2025年初提出的概念：</p>
+        <p style="margin-top:10px;font-size:15px;color:#ff6b6b;font-weight:600;">你只需要描述意图，AI来写代码。</p>
+        <p style="margin-top:10px;">到2026年，这不再是概念，而是真实的生产方式。</p>
+      </div>
+      <p>我当时听完，脑子里只有一个想法：<strong>真的假的？</strong></p>
+      <p>听起来太玄乎了吧。</p>
+    </div>
+    <div class="hand-drawn-line"></div>
+    <div class="corner-decoration bottom-left"></div>
+    <div class="corner-decoration bottom-right"></div>
+  </div>
+
+  <!-- ===== 第4屏：说干就干 ===== -->
+  <div class="content-page">
+    <div class="corner-decoration top-left"></div>
+    <div class="corner-decoration top-right"></div>
+    <div class="page-number">— 3/5 —</div>
+    <div class="section-header">
+      <span class="section-icon">🚀</span>
+      <h2 class="section-title">说干就干</h2>
+    </div>
+    <div class="section-content">
+      <p>正好那时候，我有一个真实的需求。</p>
+      <p>我需要把网页上的内容截屏保存，但页面很长，需要长截屏。市面上的工具要么收费，要么不好用。</p>
+      <div class="note-card">
+        <div class="note-card-title">🎯 我的想法</div>
+        <p>那我能不能自己做一个工具，直接在网页上做长截屏？</p>
+      </div>
+      <p>说实话，说完这句话的时候，<strong>我自己都觉得有点可笑。</strong></p>
+      <p>我一个一天编程都没学过的人，要做工具？</p>
+      <p>但那个"Vibe Coding"的概念一直在脑子里转。</p>
+      <p style="margin-top:20px;text-align:center;font-size:18px;color:#ff6b6b;font-weight:700;">试试吧，反正又不要钱。</p>
+    </div>
+    <div class="hand-drawn-line"></div>
+    <div class="corner-decoration bottom-left"></div>
+    <div class="corner-decoration bottom-right"></div>
+  </div>
+
+  <!-- ===== 第5屏：结果 ===== -->
+  <div class="content-page">
+    <div class="corner-decoration top-left"></div>
+    <div class="corner-decoration top-right"></div>
+    <div class="page-number">— 4/5 —</div>
+    <div class="section-header">
+      <span class="section-icon">✨</span>
+      <h2 class="section-title">结果你猜怎么着</h2>
+    </div>
+    <div class="section-content">
+      <p><strong class="highlight-text" style="font-size:20px;">我做出来了。</strong></p>
+      <p>真的做出来了。</p>
+      <div class="note-card highlight">
+        <div class="note-card-title">🎉 从想法到成品</div>
+        <p>一个网页长截屏工具</p>
+        <p>从想法到能用，只花了一个下午</p>
+      </div>
+      <p>我当时那个心情啊，真的不知道怎么形容。</p>
+      <p style="text-align:center;font-size:18px;color:#ff6b6b;font-weight:700;margin:20px 0;">太激动了！手都在抖！</p>
+      <p>你能理解吗？</p>
+      <p>我从来一天都没学过编程，然后真的有一个想法，真的去做，真的就做成功了。</p>
+      <p style="margin-top:20px;text-align:center;font-size:16px;color:#8b7355;font-weight:600;">这种感觉，就像突然发现：<br>原来我也可以。</p>
+    </div>
+    <div class="hand-drawn-line"></div>
+    <div class="corner-decoration bottom-left"></div>
+    <div class="corner-decoration bottom-right"></div>
+  </div>
+
+  <!-- ===== 第6屏：感悟 ===== -->
+  <div class="content-page">
+    <div class="corner-decoration top-left"></div>
+    <div class="corner-decoration top-right"></div>
+    <div class="page-number">— 5/5 —</div>
+    <div class="section-header">
+      <span class="section-icon">💭</span>
+      <h2 class="section-title">这件事让我明白</h2>
+    </div>
+    <div class="section-content">
+      <p><strong>AI时代真的来了。</strong></p>
+      <p>很多以前觉得不可能的事情，现在变得非常简单。</p>
+      <div class="note-card highlight">
+        <div class="note-card-title">🔑 核心洞察</div>
+        <p>不是说你不需要思考了，</p>
+        <p style="margin-top:10px;font-size:16px;color:#ff6b6b;font-weight:600;">想法变得更重要了。</p>
+        <p style="margin-top:10px;">你能想到什么，决定了你能做出什么。</p>
+      </div>
+      <p>技术门槛在降低，但<strong>创造力的门槛从来没有变</strong>。</p>
+      <p style="margin-top:20px;text-align:center;font-size:17px;color:#5a4a3a;font-weight:700;">这可能就是2026年最大的机会。</p>
+      <p style="margin-top:30px;text-align:center;font-size:15px;color:#8b7355;line-height:1.8;">
+        从一个对编程完全不感兴趣的人，<br>
+        到现在做出第一个工具，<br>
+        我只用了不到一个月。<br><br>
+        <strong>这不是因为我变聪明了，<br>而是因为工具变了，时代变了。</strong>
+      </p>
+    </div>
+    <div class="hand-drawn-line"></div>
+    <div class="corner-decoration bottom-left"></div>
+    <div class="corner-decoration bottom-right"></div>
+  </div>
+
+  <!-- ===== 第7屏：结尾 ===== -->
+  <div class="end-page">
+    <div class="corner-decoration top-left"></div>
+    <div class="corner-decoration top-right"></div>
+    <div class="end-emoji">💪</div>
+    <h2 class="end-title">如果你也有一个想法</h2>
+    <p class="end-text">别犹豫，去试试。<br>说不定，你也能做出让自己惊喜的东西。</p>
+    <div class="end-tags">
+      <span class="end-tag">#VibeCoding</span>
+      <span class="end-tag">#AI编程</span>
+      <span class="end-tag">#普通人学编程</span>
+      <span class="end-tag">#开发日记</span>
+      <span class="end-tag">#从0到1</span>
+      <span class="end-tag">#我不会写代码但我在开发软件</span>
+    </div>
+    <div class="corner-decoration bottom-left"></div>
+    <div class="corner-decoration bottom-right"></div>
+  </div>
+
+</div>
+
+</body>
+</html>
