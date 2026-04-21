@@ -132,6 +132,40 @@
     border-bottom: 2px solid #d4c8b8;
     border-right: 2px solid #d4c8b8;
   }
+
+  .screenshot-wrapper {
+    position: relative;
+    background: #fff;
+    padding: 8px;
+    border-radius: 4px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    transform: rotate(-1deg);
+    margin: 10px auto;
+    max-width: 300px;
+  }
+
+  .screenshot-wrapper:nth-child(odd) {
+    transform: rotate(1deg);
+  }
+
+  .real-screenshot {
+    width: 100%;
+    display: block;
+    border-radius: 3px;
+  }
+
+  .screenshot-tape {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 22px;
+    background: rgba(255,235,180,0.75);
+    border: 1px solid rgba(220,200,140,0.4);
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
   
   /* ===== 封面页样式 ===== */
   .cover-content {
@@ -269,6 +303,16 @@
     border-left: 3px solid #ff9aa2;
   }
   
+  .note-card.green {
+    background: linear-gradient(135deg, #f0fff0 0%, #fff 100%);
+    border-left: 3px solid #7ec88b;
+  }
+  
+  .note-card.blue {
+    background: linear-gradient(135deg, #f0f5ff 0%, #fff 100%);
+    border-left: 3px solid #7eaac8;
+  }
+  
   .note-card-title {
     font-size: 11px;
     font-weight: 700;
@@ -279,6 +323,46 @@
   .highlight-text {
     color: #ff6b6b;
     font-weight: 600;
+  }
+  
+  .green-text { color: #4caf50; font-weight: 600; }
+  .blue-text { color: #5a9bd5; font-weight: 600; }
+  
+  .score-compare {
+    display: flex;
+    gap: 12px;
+    margin: 15px 0;
+  }
+  
+  .score-item {
+    flex: 1;
+    background: #fff;
+    border-radius: 10px;
+    padding: 15px 12px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border: 1px solid #f0e8dc;
+  }
+  
+  .score-label {
+    font-size: 12px;
+    color: #8b7355;
+    margin-bottom: 6px;
+  }
+  
+  .score-value {
+    font-size: 22px;
+    font-weight: 800;
+  }
+  
+  .score-value.red { color: #ff6b6b; }
+  .score-value.green { color: #4caf50; }
+  
+  .arrow-up {
+    display: inline-block;
+    color: #4caf50;
+    font-size: 14px;
+    font-weight: 700;
   }
   
   /* ===== 结尾页样式 ===== */
@@ -733,6 +817,291 @@
           <span class="end-tag">#我不会写代码但我在开发软件</span>
           <span class="end-tag">#冰山日记</span>
           <span class="end-tag">#踩坑日记</span>
+        </div>
+      </div>
+      <div class="corner-decoration bottom-left"></div>
+      <div class="corner-decoration bottom-right"></div>
+    </div>
+  </div>
+
+  <!-- ==================== 日记分隔线 ==================== -->
+  <div class="diary-divider"></div>
+
+  <!-- ==================== 第三篇日记：成绩跟踪器 ==================== -->
+  <!-- ===== 第1屏：封面 ===== -->
+  <div class="screenshot-area">
+    <div class="screenshot-hint">📸 截图区域 (3:4)</div>
+    <div class="screenshot-target">
+      <div class="corner-decoration top-left"></div>
+      <div class="corner-decoration top-right"></div>
+      <div class="cover-content">
+        <div class="cover-date-tag">📅 2026.03 · 开发之旅 Day 2</div>
+        <div class="cover-emoji">📊</div>
+        <h1 class="cover-title">做完第一个工具<br>第二天我就放弃了<br>——然后做了更狠的事</h1>
+        <p class="cover-subtitle">为儿子做的成绩跟踪器，AI比我会说话</p>
+        <div class="sticky-note">
+          <span class="sticky-note-text">#VibeCoding #成绩跟踪 #从0到1</span>
+        </div>
+      </div>
+      <div class="corner-decoration bottom-left"></div>
+      <div class="corner-decoration bottom-right"></div>
+    </div>
+  </div>
+
+  <!-- ===== 第2屏：放弃 ===== -->
+  <div class="screenshot-area">
+    <div class="screenshot-hint">📸 截图区域 (3:4)</div>
+    <div class="screenshot-target">
+      <div class="corner-decoration top-left"></div>
+      <div class="corner-decoration top-right"></div>
+      <div class="page-number">— 1/8 —</div>
+      <div class="section-header">
+        <span class="section-icon">💔</span>
+        <h2 class="section-title">放弃的那一刻</h2>
+      </div>
+      <div class="section-content">
+        <p>网页长截屏工具做出来之后，我激动了一整个晚上。</p>
+        <p>第二天，我上网一搜——</p>
+        <p>好家伙，<strong>类似的工具已经一大堆了。</strong></p>
+        <div class="note-card">
+          <div class="note-card-title">🔍 搜索结果</div>
+          <p>有的做得比我好</p>
+          <p>有的免费</p>
+          <p>有的甚至不需要安装</p>
+        </div>
+        <p>我那个激动劲儿，瞬间就凉了。</p>
+        <p style="margin-top:20px;text-align:center;font-size:18px;color:#ff6b6b;font-weight:700;">我直接放弃。</p>
+      </div>
+      <div class="corner-decoration bottom-left"></div>
+      <div class="corner-decoration bottom-right"></div>
+    </div>
+  </div>
+
+  <!-- ===== 第3屏：来自老大的触动 ===== -->
+  <div class="screenshot-area">
+    <div class="screenshot-hint">📸 截图区域 (3:4)</div>
+    <div class="screenshot-target">
+      <div class="corner-decoration top-left"></div>
+      <div class="corner-decoration top-right"></div>
+      <div class="page-number">— 2/8 —</div>
+      <div class="section-header">
+        <span class="section-icon">👦</span>
+        <h2 class="section-title">来自老大的触动</h2>
+      </div>
+      <div class="section-content">
+        <p>放弃之后，我反而更兴奋了。</p>
+        <p>因为我发现了一件更重要的事：<strong>我居然能做工具了！</strong></p>
+        <p>正好，我家老大今年初三。最近这孩子，变化很大。</p>
+        <div class="note-card green">
+          <div class="note-card-title">📈 数学成绩</div>
+          <div class="score-compare">
+            <div class="score-item">
+              <div class="score-label">以前</div>
+              <div class="score-value red">200-300名</div>
+            </div>
+            <div class="score-item">
+              <div class="score-label">最近</div>
+              <div class="score-value green">81名 <span class="arrow-up">↑</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="note-card blue">
+          <div class="note-card-title">📝 英语成绩</div>
+          <div class="score-compare">
+            <div class="score-item">
+              <div class="score-label">学习态度</div>
+              <div class="score-value red" style="font-size:16px;">基本不学 😅</div>
+            </div>
+            <div class="score-item">
+              <div class="score-label">考试排名</div>
+              <div class="score-value green" style="font-size:16px;">前三 ⭐</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="corner-decoration bottom-left"></div>
+      <div class="corner-decoration bottom-right"></div>
+    </div>
+  </div>
+
+  <!-- ===== 第4屏：核心痛点 ===== -->
+  <div class="screenshot-area">
+    <div class="screenshot-hint">📸 截图区域 (3:4)</div>
+    <div class="screenshot-target">
+      <div class="corner-decoration top-left"></div>
+      <div class="corner-decoration top-right"></div>
+      <div class="page-number">— 3/8 —</div>
+      <div class="section-header">
+        <span class="section-icon">🎯</span>
+        <h2 class="section-title">我真正担心的事</h2>
+      </div>
+      <div class="section-content">
+        <p>你说气不气人？英语不学还前三。</p>
+        <p>但说实话，我更担心的是——</p>
+        <div class="note-card highlight">
+          <div class="note-card-title">❤️ 核心痛点</div>
+          <p style="font-size:17px;color:#ff6b6b;font-weight:600;">他自己看不到这些变化。</p>
+          <p style="margin-top:10px;">进步了，他觉得自己还是那样。</p>
+          <p>需要提升的，他也没个清晰的认识。</p>
+        </div>
+        <p>家长嘴上说一百遍，不如让他自己看到数据。</p>
+        <p style="margin-top:20px;text-align:center;font-size:16px;color:#8b7355;font-weight:600;">
+          我就想：<br>能不能做一个<strong class="highlight-text">成绩跟踪器</strong>？
+        </p>
+      </div>
+      <div class="corner-decoration bottom-left"></div>
+      <div class="corner-decoration bottom-right"></div>
+    </div>
+  </div>
+
+  <!-- ===== 第5屏：说干就干 ===== -->
+  <div class="screenshot-area">
+    <div class="screenshot-hint">📸 截图区域 (3:4)</div>
+    <div class="screenshot-target">
+      <div class="corner-decoration top-left"></div>
+      <div class="corner-decoration top-right"></div>
+      <div class="page-number">— 4/8 —</div>
+      <div class="section-header">
+        <span class="section-icon">🚀</span>
+        <h2 class="section-title">说干就干</h2>
+      </div>
+      <div class="section-content">
+        <p>我的想法很简单：</p>
+        <div class="note-card">
+          <div class="note-card-title">🎯 成绩跟踪器要做什么</div>
+          <p>✅ 记录每次考试的成绩</p>
+          <p>✅ 自动画出趋势图</p>
+          <p>✅ <strong>配上AI解读</strong>——客观地告诉他</p>
+          <p style="padding-left:20px;color:#8b7355;">你进步在哪里</p>
+          <p style="padding-left:20px;color:#ff6b6b;">你需要在哪里发力</p>
+        </div>
+        <p>有了第一次的经验，这次我心里有底多了。</p>
+        <p style="margin-top:20px;text-align:center;font-size:18px;color:#5a9bd5;font-weight:700;">第二次，更自信了。</p>
+      </div>
+      <div class="corner-decoration bottom-left"></div>
+      <div class="corner-decoration bottom-right"></div>
+    </div>
+  </div>
+
+  <!-- ===== 第6屏：做出来了 ===== -->
+  <div class="screenshot-area">
+    <div class="screenshot-hint">📸 截图区域 (3:4)</div>
+    <div class="screenshot-target">
+      <div class="corner-decoration top-left"></div>
+      <div class="corner-decoration top-right"></div>
+      <div class="page-number">— 5/8 —</div>
+      <div class="section-header">
+        <span class="section-icon">✨</span>
+        <h2 class="section-title">还真做出来了</h2>
+      </div>
+      <div class="section-content">
+        <p><strong class="highlight-text" style="font-size:20px;">成绩跟踪器，做出来了。</strong></p>
+        <p>输入成绩，自动出图表，AI帮你分析。</p>
+        <p style="margin-top:5px;">👇 这是真实的软件截图👇</p>
+      </div>
+      <div class="corner-decoration bottom-left"></div>
+      <div class="corner-decoration bottom-right"></div>
+    </div>
+  </div>
+
+  <!-- ===== 第7屏：数学截图 ===== -->
+  <div class="screenshot-area">
+    <div class="screenshot-hint">📸 截图区域 (3:4)</div>
+    <div class="screenshot-target">
+      <div class="corner-decoration top-left"></div>
+      <div class="corner-decoration top-right"></div>
+      <div class="page-number">— 6/8 —</div>
+      <div class="section-header">
+        <span class="section-icon">📈</span>
+        <h2 class="section-title">数学：从200名冲到81名</h2>
+      </div>
+      <div class="section-content">
+        <div class="screenshot-wrapper">
+          <img src="screenshots/%E6%95%B0%E5%AD%A6.jpg" alt="数学成绩趋势图" class="real-screenshot">
+          <div class="screenshot-tape"></div>
+        </div>
+        <p style="text-align:center;font-size:13px;color:#8b7355;margin-top:8px;">趋势图 + AI解读，进步一目了然</p>
+      </div>
+      <div class="corner-decoration bottom-left"></div>
+      <div class="corner-decoration bottom-right"></div>
+    </div>
+  </div>
+
+  <!-- ===== 第8屏：英语+道法截图 ===== -->
+  <div class="screenshot-area">
+    <div class="screenshot-hint">📸 截图区域 (3:4)</div>
+    <div class="screenshot-target">
+      <div class="corner-decoration top-left"></div>
+      <div class="corner-decoration top-right"></div>
+      <div class="page-number">— 7/8 —</div>
+      <div class="section-header">
+        <span class="section-icon">📝</span>
+        <h2 class="section-title">英语和道法，AI比我会说话</h2>
+      </div>
+      <div class="section-content">
+        <div class="screenshot-wrapper">
+          <img src="screenshots/%E8%8B%B1%E8%AF%AD.jpg" alt="英语成绩趋势图" class="real-screenshot">
+          <div class="screenshot-tape"></div>
+        </div>
+        <p style="text-align:center;font-size:12px;color:#8b7355;margin-top:6px;">英语：不学还前三，AI说保持就好</p>
+        <div style="height:12px;"></div>
+        <div class="screenshot-wrapper">
+          <img src="screenshots/%E9%81%93%E6%B3%95.jpg" alt="道法成绩趋势图" class="real-screenshot">
+          <div class="screenshot-tape"></div>
+        </div>
+        <p style="text-align:center;font-size:12px;color:#8b7355;margin-top:6px;">AI的解读公正客观，不带情绪</p>
+      </div>
+      <div class="corner-decoration bottom-left"></div>
+      <div class="corner-decoration bottom-right"></div>
+    </div>
+  </div>
+
+  <!-- ===== 第9屏：感悟 ===== -->
+  <div class="screenshot-area">
+    <div class="screenshot-hint">📸 截图区域 (3:4)</div>
+    <div class="screenshot-target">
+      <div class="corner-decoration top-left"></div>
+      <div class="corner-decoration top-right"></div>
+      <div class="page-number">— 8/8 —</div>
+      <div class="section-header">
+        <span class="section-icon">💭</span>
+        <h2 class="section-title">这次让我明白什么</h2>
+      </div>
+      <div class="section-content">
+        <div class="note-card highlight">
+          <div class="note-card-title">🔑 两次开发最大的区别</div>
+          <p>第一个工具让我知道：<strong class="highlight-text">我能做。</strong></p>
+          <p>第二个工具让我知道：<strong style="color:#5a9bd5;">做对的事，比把事做对更重要。</strong></p>
+        </div>
+        <p>长截屏工具，我做出来了，但市场不需要我。</p>
+        <p>成绩跟踪器，我做出来了，因为这是我家孩子真正需要的。</p>
+        <p style="margin-top:20px;text-align:center;font-size:17px;color:#5a4a3a;font-weight:700;">
+          最好的产品，<br>往往来自你身边最真实的痛点。
+        </p>
+        <p style="margin-top:15px;text-align:center;font-size:15px;color:#8b7355;">
+          不是去找风口，<br>而是去看你身边谁在头疼。
+        </p>
+      </div>
+      <div class="corner-decoration bottom-left"></div>
+      <div class="corner-decoration bottom-right"></div>
+    </div>
+  </div>
+
+  <!-- ===== 第10屏：结尾 ===== -->
+  <div class="screenshot-area">
+    <div class="screenshot-hint">📸 截图区域 (3:4)</div>
+    <div class="screenshot-target">
+      <div class="corner-decoration top-left"></div>
+      <div class="corner-decoration top-right"></div>
+      <div class="end-content">
+        <div class="end-emoji">💡</div>
+        <h2 class="end-title">如果你也在犹豫做什么</h2>
+        <p class="end-text">别想太多。<br>看看身边，谁在头疼，<br>那就是你的下一个项目。</p>
+        <div class="end-tags">
+          <span class="end-tag">#VibeCoding</span>
+          <span class="end-tag">#AI编程</span>
+          <span class="end-tag">#成绩跟踪</span>
+          <span class="end-tag">#开发日记</span>
         </div>
       </div>
       <div class="corner-decoration bottom-left"></div>
